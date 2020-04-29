@@ -100,7 +100,7 @@ async function Login_and_Get_Details(email, password) {
 		applications.forEach((application) => {
 			const application_status = application.application_status;
 			const company_name = application.company_name;
-			const company_url = "https://internshala.com" + application.job_url;
+			const company_url = "https://internshala.com" + application.job_url + "/";
 			const profile = application.profile;
 
 			result.application.push({

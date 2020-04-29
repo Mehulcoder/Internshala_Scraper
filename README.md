@@ -59,8 +59,8 @@ Install them and then move to the next step.
 
 > Basically you have to provide credentials as the arguments while running the application. 
 
-* Wait for a few seconds till you see a ```output.txt``` file in your directory.
-* DONE !!! Just open the ```output.txt``` file and you have all your required data.
+* Wait for a few seconds till you see a ```output.csv``` file in your directory.
+* DONE !!! Just open the ```output.csv``` file and you have all your required data. You can sort it in MS Excel or any other application
 
   
   
@@ -74,6 +74,8 @@ Install them and then move to the next step.
 * npm dependencies used:
 
 	* "request-promise": "^4.2.5" : To send requests.
+	* "cli-spinner": "^0.2.10",
+        * "json2csv": "^5.0.1",
 
 ## Authors
 

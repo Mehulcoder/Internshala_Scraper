@@ -5,20 +5,15 @@ request = request.defaults({
 	jar: cookieJar,
 });
 const fs = require("fs");
-var Spinner = require("cli-spinner").Spinner;
-var Login_spinner = new Spinner("Logging you in.. %s");
-Login_spinner.setSpinnerString("|/-\\");
+const ora = require("ora");
 
-var fetch_spinner = new Spinner("Fetching your data.. %s");
-fetch_spinner.setSpinnerString("|/-\\");
 //
 // ─── LOGIN ──────────────────────────────────────────────────────────────────────
 //
 
 async function login(email, password) {
+	const spinner = ora("Logging you in...").start();
 	try {
-		Login_spinner.start();
-
 		const result = await request.get("https://internshala.com/");
 		const cookieString = cookieJar.getCookieString("https://internshala.com/");
 		const splittedByCsrfCookieName = cookieString.split("csrf_cookie_name=");
@@ -35,14 +30,10 @@ async function login(email, password) {
 		};
 
 		await request(options);
-		Login_spinner.stop();
-		console.log("   ");
-		console.log(`Logged in as ${email} successfully`);
+		spinner.succeed(`Logged in as ${email} successfully`);
 		return 1;
 	} catch (error) {
 		console.log("Could not login");
-		Login_spinner.stop();
-		console.log("   ");
 		return new Error(error);
 	}
 }
@@ -82,8 +73,7 @@ async function getDetails(page_number) {
 
 async function Login_and_Get_Details(email, password) {
 	await login(email, password);
-
-	fetch_spinner.start();
+	const spinner = ora("Fetching your details...").start();
 	var application = [];
 	// var seen = [];
 	// var inTouch = [];
@@ -121,10 +111,8 @@ async function Login_and_Get_Details(email, password) {
 	const result_csv = json2csvParser.parse(result.application);
 
 	fs.writeFile("output.csv", result_csv, (err) => {
-		fetch_spinner.stop();
-		console.log("   ");
 		if (err) throw err;
-		console.log("Data written to output.csv!");
+		spinner.succeed("Data written to file");
 	});
 }
 

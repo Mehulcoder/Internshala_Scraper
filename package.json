@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/Mehulcoder/Internshala_Scraper#readme",
   "dependencies": {
-    "cli-spinner": "^0.2.10",
     "json2csv": "^5.0.1",
     "ora": "^4.0.4",
     "request": "^2.88.2",

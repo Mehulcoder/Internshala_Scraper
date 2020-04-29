@@ -12,7 +12,6 @@ const ora = require("ora");
 //
 
 async function login(email, password) {
-	const spinner = ora("Logging you in...").start();
 	try {
 		const result = await request.get("https://internshala.com/");
 		const cookieString = cookieJar.getCookieString("https://internshala.com/");
@@ -30,10 +29,7 @@ async function login(email, password) {
 		};
 
 		await request(options);
-		spinner.succeed(`Logged in as ${email} successfully`);
-		return 1;
 	} catch (error) {
-		console.log("Could not login");
 		return new Error(error);
 	}
 }
@@ -62,7 +58,6 @@ async function getDetails(page_number) {
 
 		return result;
 	} catch (error) {
-		console.log(error);
 		return error;
 	}
 }
@@ -72,8 +67,12 @@ async function getDetails(page_number) {
 //
 
 async function Login_and_Get_Details(email, password) {
+	const spinner = ora("Logging you in...").start();
 	await login(email, password);
-	const spinner = ora("Fetching your details...").start();
+	spinner.succeed("Logged in successfully!");
+
+	spinner.start("Fetching your data!");
+
 	var application = [];
 	// var seen = [];
 	// var inTouch = [];
@@ -111,7 +110,10 @@ async function Login_and_Get_Details(email, password) {
 	const result_csv = json2csvParser.parse(result.application);
 
 	fs.writeFile("output.csv", result_csv, (err) => {
-		if (err) throw err;
+		if (err) {
+			spinner.fail("Could not fetch data!");
+			throw err;
+		}
 		spinner.succeed("Data written to file");
 	});
 }

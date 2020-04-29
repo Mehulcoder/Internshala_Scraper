@@ -82,10 +82,6 @@ async function Login_and_Get_Details(email, password) {
 		return Error("Could not login");
 	}
 	var application = [];
-	// var seen = [];
-	// var inTouch = [];
-	// var notSelected = [];
-	// var applied = [];
 	var result = {
 		application,
 	};

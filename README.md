@@ -6,7 +6,7 @@
 
 Tired of looking up for your internship application status in **Insternshala** by scrolling and switching to different pages again and again?
 
-So, this one's for you. A simple webscraping tool which will extract the required data for you and put it into a text file, in a structured and sorted format.
+So, this one's for you. A simple webscraping tool which will extract the required data for you and put it into a csv file, in a structured and sorted format.
 
 > Open to suggestions for upcoming versions
 

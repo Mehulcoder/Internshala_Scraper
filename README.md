@@ -2,7 +2,7 @@
   
   
 
-# internshala-scraper
+# internshala_scraper
 
 Tired of looking up for your internship application status in **Insternshala** by scrolling and switching to different pages again and again?
 
@@ -46,7 +46,7 @@ Install them and then move to the next step.
 
 * Start terminal and change working directory to the extracted repository.
 
-* Make sure your current working directory contains the file named ```login.js```
+* Make sure your current working directory contains the file named ```index.js```
 
 * To install the required dependencies, inside the terminal, run command ```npm install```
 
@@ -55,7 +55,7 @@ Install them and then move to the next step.
 ## Running
 
 * Say your **email address** is ```abc@gmail.com``` and **password** is ```password```. (You'll be having something different, use yours only)
-* Using the terminal run command  ```node login.js abc@gmail.com password```
+* Using the terminal run command  ```node index.js abc@gmail.com password```
 
 > Basically you have to provide credentials as the arguments while running the application. 
 
@@ -74,8 +74,8 @@ Install them and then move to the next step.
 * npm dependencies used:
 
 	* "request-promise": "^4.2.5" : To send requests.
-	* "cli-spinner": "^0.2.10",
-        * "json2csv": "^5.0.1",
+	* "cli-spinner": "^0.2.10", : For loading animation.
+     * "json2csv": "^5.0.1": For creating *.csv* file 
 
 ## Authors
 

@@ -2,11 +2,11 @@
   
   
 
-# internshala-scraper
+# internshala_scraper
 
 Tired of looking up for your internship application status in **Insternshala** by scrolling and switching to different pages again and again?
 
-So, this one's for you. A simple webscraping tool which will extract the required data for you and put it into a text file, in a structured and sorted format.
+So, this one's for you. A simple webscraping tool which will extract the required data for you and put it into a csv file, in a structured and sorted format.
 
 > Open to suggestions for upcoming versions
 
@@ -46,7 +46,7 @@ Install them and then move to the next step.
 
 * Start terminal and change working directory to the extracted repository.
 
-* Make sure your current working directory contains the file named ```login.js```
+* Make sure your current working directory contains the file named ```index.js```
 
 * To install the required dependencies, inside the terminal, run command ```npm install```
 
@@ -55,12 +55,12 @@ Install them and then move to the next step.
 ## Running
 
 * Say your **email address** is ```abc@gmail.com``` and **password** is ```password```. (You'll be having something different, use yours only)
-* Using the terminal run command  ```node login.js abc@gmail.com password```
+* Using the terminal run command  ```node index.js abc@gmail.com password```
 
 > Basically you have to provide credentials as the arguments while running the application. 
 
-* Wait for a few seconds till you see a ```output.txt``` file in your directory.
-* DONE !!! Just open the ```output.txt``` file and you have all your required data.
+* Wait for a few seconds till you see a ```output.csv``` file in your directory.
+* DONE !!! Just open the ```output.csv``` file and you have all your required data. You can sort it in MS Excel or any other application
 
   
   
@@ -74,6 +74,8 @@ Install them and then move to the next step.
 * npm dependencies used:
 
 	* "request-promise": "^4.2.5" : To send requests.
+	* "cli-spinner": "^0.2.10", : For loading animation.
+     * "json2csv": "^5.0.1": For creating *.csv* file 
 
 ## Authors
 

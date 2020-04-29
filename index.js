@@ -86,11 +86,12 @@ async function Login_and_Get_Details(email, password) {
 		application,
 	};
 
+	const spinner = ora("Fetching your data!").start();
+
 	//Get the page_numbers
 	const data = await getDetails(1);
 	const total_pages = data.total_pages;
 
-	const spinner = ora("Fetching your data!").start();
 	// Get the data by iteration
 	for (let page = 1; page <= total_pages; page++) {
 		const data = await getDetails(page);
@@ -99,7 +100,7 @@ async function Login_and_Get_Details(email, password) {
 		applications.forEach((application) => {
 			const application_status = application.application_status;
 			const company_name = application.company_name;
-			const company_url = "internshala.com" + application.job_url;
+			const company_url = "https://internshala.com" + application.job_url;
 			const profile = application.profile;
 
 			result.application.push({

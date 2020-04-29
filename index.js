@@ -12,6 +12,7 @@ const ora = require("ora");
 //
 
 async function login(email, password) {
+	const spinner = ora("Logging you in...").start();
 	try {
 		const result = await request.get("https://internshala.com/");
 		const cookieString = cookieJar.getCookieString("https://internshala.com/");
@@ -28,7 +29,15 @@ async function login(email, password) {
 			},
 		};
 
-		await request(options);
+		let out = await request(options);
+		out = JSON.parse(out);
+		if (out.success !== true) {
+			spinner.fail("Invalid login!");
+			return new Error("Could not login credentials!");
+		} else {
+			spinner.succeed("Logged in successfully!");
+			return 1;
+		}
 	} catch (error) {
 		return new Error(error);
 	}
@@ -58,6 +67,7 @@ async function getDetails(page_number) {
 
 		return result;
 	} catch (error) {
+		spinner.fail("Could not fetch data!");
 		return error;
 	}
 }
@@ -67,12 +77,10 @@ async function getDetails(page_number) {
 //
 
 async function Login_and_Get_Details(email, password) {
-	const spinner = ora("Logging you in...").start();
-	await login(email, password);
-	spinner.succeed("Logged in successfully!");
-
-	spinner.start("Fetching your data!");
-
+	const check = await login(email, password);
+	if (check !== 1) {
+		return Error("Could not login");
+	}
 	var application = [];
 	// var seen = [];
 	// var inTouch = [];
@@ -86,6 +94,7 @@ async function Login_and_Get_Details(email, password) {
 	const data = await getDetails(1);
 	const total_pages = data.total_pages;
 
+	const spinner = ora("Fetching your data!").start();
 	// Get the data by iteration
 	for (let page = 1; page <= total_pages; page++) {
 		const data = await getDetails(page);
@@ -105,16 +114,19 @@ async function Login_and_Get_Details(email, password) {
 			});
 		});
 	}
+	spinner.succeed("Fetched data successfully!");
+
+	spinner.start("Writing your data!");
 
 	const json2csvParser = new Parser();
 	const result_csv = json2csvParser.parse(result.application);
 
 	fs.writeFile("output.csv", result_csv, (err) => {
 		if (err) {
-			spinner.fail("Could not fetch data!");
+			spinner.fail("Could not write data!");
 			throw err;
 		}
-		spinner.succeed("Data written to file");
+		spinner.succeed("Data written successfully!");
 	});
 }
 

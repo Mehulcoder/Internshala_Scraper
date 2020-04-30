@@ -1,3 +1,4 @@
+
 # internshala_scraper
 
 Tired of looking up for your internship application status in **Insternshala** by scrolling and switching to different pages again and again?
@@ -50,10 +51,9 @@ Install them and then move to the next step.
 
 - npm dependencies used:
 
-      	* "request-promise": "^4.2.5" : To send requests.
-      	* "ora": "^4.0.4", : For loading animation.
-
-  - "json2csv": "^5.0.1": For creating _.csv_ file
+    * "request-promise": "^4.2.5" : To send requests.
+    * "ora": "^4.0.4", : For loading animation.
+	* "json2csv": "^5.0.1": For creating _.csv_ file
 
 ## Authors
 
